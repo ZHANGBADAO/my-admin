@@ -2,9 +2,6 @@
   <div>布局</div>
 </template>
 
-<script lang="ts" setup>
-const a = 'b'
-const c = a + 'sss'
-</script>
+<script lang="ts" setup></script>
 
 <style scoped></style>
