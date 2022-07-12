@@ -1,4 +1,4 @@
-import type { RouteRecordRaw } from 'vue-router';
+import type { RouteRecordRaw } from 'vue-router'
 
 interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
   meta: {
