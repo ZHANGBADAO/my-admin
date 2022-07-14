@@ -1,12 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
-  meta: {
-    title: string
-  }
-}
-
-export const basicRoutes: AppRouteRecordRaw[] = [
+export const basicRoutes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'Login',
