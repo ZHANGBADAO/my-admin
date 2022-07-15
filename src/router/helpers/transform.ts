@@ -10,14 +10,14 @@ export function routerToMenu(
 function transformMenuResource(routes: Route.MenuToRouteType[]) {
   return routes.map((item) => {
     const $tmp: Route.MenuType = {
-      label: item.meta.title,
-      key: item.name,
+      label: item.meta!.title,
+      key: item.name!,
       path: item.path,
-      icon: item.meta.icon,
+      icon: item.meta!.icon,
       redirect: item.redirect,
-      isHidden: item.meta.isHidden,
-      level: item.meta.level,
-      value: item.meta.value,
+      isHidden: item.meta!.isHidden,
+      level: item.meta!.level,
+      value: item.meta!.value,
     }
     if (item.children && item.children.length) {
       $tmp.children = transformMenuResource(item.children)

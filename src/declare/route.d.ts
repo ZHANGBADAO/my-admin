@@ -5,12 +5,12 @@ declare namespace Route {
   // 菜单转换为route
   interface MenuToRouteType {
     path: string
-    name: string
+    name?: string
     redirect?: string
     // 该路由对应页面的组件路径
-    component: string | (() => Promise<RouteComponent>)
+    component?: string | (() => Promise<RouteComponent>)
     children?: MenuToRouteType[]
-    meta: {
+    meta?: {
       title: string
       // 组件名称
       componentName?: string

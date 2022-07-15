@@ -12,7 +12,7 @@ export const transformUserResourceToRoutes = (
     let componentName = ''
     if (parent && parent.path) {
       routePath = item.data.path
-      componentName = `${parent.meta.componentName}_${item.data.path}`
+      componentName = `${parent.meta!.componentName}_${item.data.path}`
     } else {
       routePath = `/${item.data.path}`
       componentName = `${item.data.path}`
@@ -43,7 +43,7 @@ export const transformUserResourceToRoutes = (
     if (item.children && item.children.length) {
       // 如果未定义 redirect 默认第一个子路由为 redirect
       if (!item.data.redirectPath) {
-        const parentRedirectPath = `/${currentRouter.meta.componentName!.replaceAll(
+        const parentRedirectPath = `/${currentRouter.meta!.componentName!.replaceAll(
           '_',
           '/',
         )}`

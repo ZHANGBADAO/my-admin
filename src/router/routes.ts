@@ -2,6 +2,10 @@ import { Route } from '@/declare/route'
 
 export const basicRoutes: Route.MenuToRouteType[] = [
   {
+    path: '/',
+    redirect: '/login',
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import('@/views/auth/login/index.vue'),

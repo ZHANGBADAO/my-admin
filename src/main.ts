@@ -5,8 +5,8 @@ import { setupStore } from './store'
 
 async function bootstrap() {
   const app = createApp(App)
-  setupRouter(app)
   setupStore(app)
+  setupRouter(app)
   app.mount('#app')
 }
 
