@@ -7,8 +7,8 @@ export function routerToMenu(
   return transformMenuResource(routes)
 }
 
-function transformMenuResource(routes: any) {
-  return routes.map((item: any) => {
+function transformMenuResource(routes: Route.MenuToRouteType[]) {
+  return routes.map((item) => {
     const $tmp: Route.MenuType = {
       label: item.meta.title,
       key: item.name,

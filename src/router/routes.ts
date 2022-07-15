@@ -1,6 +1,6 @@
-import type { RouteRecordRaw } from 'vue-router'
+import { Route } from '@/declare/route'
 
-export const basicRoutes: RouteRecordRaw[] = [
+export const basicRoutes: Route.MenuToRouteType[] = [
   {
     path: '/login',
     name: 'Login',

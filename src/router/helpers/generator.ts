@@ -1,5 +1,5 @@
 import { consoleWarn } from '@/utils'
-import type { RouteRecordRaw, RouteComponent } from 'vue-router'
+import type { RouteComponent } from 'vue-router'
 import { Route } from '@/declare/route'
 
 // 接口获取的菜单转换为route,此时route里component值为字符串(组件的路径)
@@ -43,7 +43,7 @@ export const transformUserResourceToRoutes = (
     if (item.children && item.children.length) {
       // 如果未定义 redirect 默认第一个子路由为 redirect
       if (!item.data.redirectPath) {
-        const parentRedirectPath = `/${currentRouter.meta.componentName.replaceAll(
+        const parentRedirectPath = `/${currentRouter.meta.componentName!.replaceAll(
           '_',
           '/',
         )}`
@@ -91,27 +91,22 @@ export const asyncImportRoute = (routes: Route.MenuToRouteType[]): void => {
  * 参数: routes 多级的路由数组, breadCrumb 面包屑导航数组(由于把多级变成二级,$route.matched 无法获取到嵌套路由每一层级的信息, 所以要保存面包屑到meta)
  * 返回值: 二级的路由数组
  */
-interface BreadCrumbType {
-  title: string
-  path: string
-}
-
 export function transformRoutesArrToFlat(
-  routes: RouteRecordRaw[],
-  breadCrumb: BreadCrumbType[] = [],
+  routes: Route.MenuToRouteType[],
+  breadCrumb: Route.BreadCrumbType[] = [],
 ) {
-  let arrFlat: RouteRecordRaw[] = []
+  let arrFlat: Route.MenuToRouteType[] = []
 
   routes.forEach((route) => {
-    const tempObj: RouteRecordRaw = {
+    const tempObj: Route.MenuToRouteType = {
       path: route.path,
-      component: route.component!,
+      component: route.component,
       name: route.name,
       meta: route.meta,
-      redirect: route.redirect || '',
+      redirect: route.redirect,
       children: [],
     }
-    const breadCrumbTemp: BreadCrumbType[] = [
+    const breadCrumbTemp: Route.BreadCrumbType[] = [
       { title: tempObj.meta!.title as string, path: tempObj.path },
     ]
 

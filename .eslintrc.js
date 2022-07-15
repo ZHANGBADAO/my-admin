@@ -25,6 +25,8 @@ module.exports = {
     "prettier/prettier": "error",
     'vue/multi-word-component-names': 'off',
     '@typescript-eslint/no-unused-vars': ['warn', { ignoreRestSiblings: true, varsIgnorePattern: '^_' }],
+    '@typescript-eslint/ban-ts-comment': 'off',
+
   },
   overrides: [
     {

@@ -1,15 +1,8 @@
 import type { VNode } from 'vue'
-import { RouteRecordRaw, RouteComponent } from 'vue-router'
+import { RouteComponent } from 'vue-router'
 
 declare namespace Route {
-  // 定义在前端的静态路由
-  interface BasicRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
-    meta: {
-      title: string
-    }
-  }
-
-  // 菜单转换为route,此时route里component值为字符串(组件的路径)
+  // 菜单转换为route
   interface MenuToRouteType {
     path: string
     name: string
@@ -18,18 +11,24 @@ declare namespace Route {
     component: string | (() => Promise<RouteComponent>)
     children?: MenuToRouteType[]
     meta: {
-      // 组件名称
-      componentName: string
-      value: string
       title: string
-      label: string
-      icon: string
-      level: number
-      isHidden: number
-      sortNo: string
-      permissions: string
-      ignoreAuth: boolean
+      // 组件名称
+      componentName?: string
+      value?: string
+      label?: string
+      icon?: string
+      level?: number
+      isHidden?: number
+      sortNo?: string
+      permissions?: string
+      ignoreAuth?: boolean
+      breadCrumb?: BreadCrumbType[]
     }
+  }
+
+  interface BreadCrumbType {
+    title: string
+    path: string
   }
 
   // 前端布局菜单所需结构体
@@ -39,7 +38,7 @@ declare namespace Route {
     path: string
     redirect?: string
     isHidden?: number
-    icon?: () => VNode
+    icon?: string
     cpIcon?: string
     level?: number
     value?: string
