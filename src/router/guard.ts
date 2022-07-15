@@ -5,7 +5,7 @@ import { RouteEnum } from '@/enum'
 import { authStore, routerStore } from '@/store/modules'
 import { consoleError } from '@/utils'
 
-const whitePathList: Array<string> = [RouteEnum.LOGIN_PATH]
+const whitePathList: Array<string> = [RouteEnum.LOGIN_PATH, '/home']
 
 export function createRouterGuards(router: Router) {
   const asyncAuthStore = authStore()
