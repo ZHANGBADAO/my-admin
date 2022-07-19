@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { viteMockServe } from 'vite-plugin-mock'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -21,6 +22,11 @@ export default defineConfig({
       // 配置文件生成位置
       dts: 'src/declare/components.d.ts',
       resolvers: [ElementPlusResolver()],
+    }),
+    viteMockServe({
+      mockPath: 'mock',
+      localEnabled: true, //本地启用mock
+      prodEnabled: false, //生产环境禁用
     }),
   ],
   envDir: './env',

@@ -62,7 +62,7 @@ instance.interceptors.response.use(
 //get请求
 function httpGet<T>({
   url,
-  params,
+  data,
   headers,
 }: getReqType): Promise<responseType<T>> {
   return new Promise((resolve, reject) => {
@@ -70,7 +70,7 @@ function httpGet<T>({
       .request<responseType<T>>({
         method: 'GET',
         url,
-        params: params || {},
+        params: data || {},
         headers: Object.assign({}, headers || {}),
       })
       .then((res) => {
@@ -140,7 +140,7 @@ function httpUpload<T>({
 
 interface getReqType {
   url: string
-  params?: Record<string, any>
+  data?: Record<string, any>
   headers?: AxiosRequestHeaders
 }
 interface postReqType {

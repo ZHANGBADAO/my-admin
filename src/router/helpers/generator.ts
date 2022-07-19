@@ -41,13 +41,11 @@ export const transformUserResourceToRoutes = (
 
     // 是否有子菜单，并递归处理
     if (item.children && item.children.length) {
-      // 如果未定义 redirect 默认第一个子路由为 redirect
+      // 如果未定义 redirect 默认第一个子路由为 redirect; 用路由的name进行跳转(由于把多级路由转为二级,拼接path就不适用了)
       if (!item.data.redirectPath) {
-        const parentRedirectPath = `/${currentRouter.meta!.componentName!.replaceAll(
-          '_',
-          '/',
-        )}`
-        currentRouter.redirect = `${parentRedirectPath}/${item.children[0].data.path}`
+        currentRouter.redirect = {
+          name: `${currentRouter.name}_${item.children[0].data.path}`,
+        }
       }
 
       currentRouter.children = transformUserResourceToRoutes(

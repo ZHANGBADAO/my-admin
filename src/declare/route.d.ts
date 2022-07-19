@@ -6,7 +6,7 @@ declare namespace Route {
   interface MenuToRouteType {
     path: string
     name?: string
-    redirect?: string
+    redirect?: { name: string }
     // 该路由对应页面的组件路径
     component?: string | (() => Promise<RouteComponent>)
     children?: MenuToRouteType[]
