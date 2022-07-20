@@ -1,14 +1,16 @@
-import type { Router } from 'vue-router'
+import type {Router, RouteRecordRaw} from 'vue-router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { RouteEnum } from '@/enum'
 import { authStore, routerStore } from '@/store/modules'
 import { consoleError } from '@/utils'
+import { ErrorRoute } from '@/router/routes'
 
-const whitePathList: Array<string> = [RouteEnum.LOGIN_PATH, '/home']
+const whitePathList: Array<string> = [RouteEnum.LOGIN_PATH]
 
 export function createRouterGuards(router: Router) {
   const asyncAuthStore = authStore()
+  const asyncRouteStore = routerStore()
 
   router.beforeEach(async (to, from, next) => {
     NProgress.start()
@@ -39,7 +41,27 @@ export function createRouterGuards(router: Router) {
       return
     }
 
-    next()
+    // 根据远程路由加载状态判断是否需要远程获取用户资源
+    if (asyncRouteStore.loadedState) {
+      next()
+      return
+    }
+    // 获取当前登录用户权限资源
+    const routesFlat = await asyncRouteStore.getUserResourceAndTransform()
+    // 动态添加路由
+    routesFlat.forEach((item) => {
+      router.addRoute(item as RouteRecordRaw)
+    })
+    asyncRouteStore.setLoadedState(true)
+    console.log('服务端获取的菜单转为路由', routesFlat)
+
+    // 配置404错误路由
+    const isErrorPage = router.getRoutes().findIndex((item) => item.name === 'NotFound')
+    if (isErrorPage === -1) {
+      router.addRoute(ErrorRoute as RouteRecordRaw)
+    }
+
+    next(to)
   })
 
   router.afterEach((to, from) => {
@@ -47,7 +69,6 @@ export function createRouterGuards(router: Router) {
     document.title = `${to.meta.title as string} - ${VITE_APP_NAME}`
 
     // 处理组件是否缓存
-    const asyncRouteStore = routerStore()
     const keepaliveComponents = asyncRouteStore.keepAliveComponents
     if (to.meta.isKeepalive) {
       // 需要缓存的组件

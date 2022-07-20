@@ -1,20 +1,22 @@
 <template>
-  <el-container>
-    <el-header>Header</el-header>
-    <el-main>
-      <div class="flex bg-amber-300">
-        <el-button type="success">按钮</el-button>
-      </div>
-    </el-main>
+  <el-container direction="vertical">
+
+    <Header />
+
+    <el-container style="height: calc(100vh - 60px)">
+      <Aside />
+      <el-container>
+        <MainView />
+        <el-footer class="">底部信息</el-footer>
+      </el-container>
+    </el-container>
+
   </el-container>
 </template>
 
 <script lang="ts" setup>
-import { routerStore } from '@/store/modules'
-const useRouterStore = routerStore()
-useRouterStore.getUserResourceAndTransform().then((res) => {
-  console.log('路由', res)
-})
+import {Header, MainView,Aside} from './components'
+
 </script>
 
 <style scoped lang="scss"></style>

@@ -9,24 +9,24 @@ export const transformUserResourceToRoutes = (
 ): Route.MenuToRouteType[] => {
   return resource.map((item) => {
     let routePath = ''
-    let componentName = ''
+    // 路由name: 用path动态拼接生成如 dashboard_workplace
+    let routeName = ''
     if (parent && parent.path) {
       routePath = item.data.path
-      componentName = `${parent.meta!.componentName}_${item.data.path}`
+      routeName = `${parent.name}_${item.data.path}`
     } else {
       routePath = `/${item.data.path}`
-      componentName = `${item.data.path}`
+      routeName = item.data.path
     }
 
     const currentRouter: Route.MenuToRouteType = {
-      // 路由地址 动态拼接生成如 /dashboard/workplace
       path: routePath,
-      name: componentName,
+      name: routeName,
       // 该路由对应页面的组件路径
       component: item.data.component!,
       meta: {
         // 组件名称
-        componentName: componentName,
+        componentName: routeName,
         value: item.data.id,
         title: item.data.menuName,
         label: item.data.menuName,
@@ -41,10 +41,10 @@ export const transformUserResourceToRoutes = (
 
     // 是否有子菜单，并递归处理
     if (item.children && item.children.length) {
-      // 如果未定义 redirect 默认第一个子路由为 redirect; 用路由的name进行跳转(由于把多级路由转为二级,拼接path就不适用了)
-      if (!item.data.redirectPath) {
+      // redirectPath的值是route的name, 不是path; 用路由的name进行跳转(由于把多级路由转为二级,拼接path就不适用了)
+      if (item.data.redirectPath) {
         currentRouter.redirect = {
-          name: `${currentRouter.name}_${item.children[0].data.path}`,
+          name: item.data.redirectPath,
         }
       }
 
@@ -132,6 +132,9 @@ export function transformRoutesArrToFlat(
           breadCrumb.concat(breadCrumbTemp),
         ),
       )
+      // 二级及以下的菜单 有子菜单,只需把子菜单放入arrFlat, 本身不需要放入;
+      // 保证路由表中只有 一级菜单(用来打开layout页面) 和 菜单树中最深层的页面
+      return
     }
 
     tempObj.meta!.breadCrumb = breadCrumb.concat(breadCrumbTemp)

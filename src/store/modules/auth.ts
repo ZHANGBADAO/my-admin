@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { ElMessageBox, ElNotification } from 'element-plus/es'
 import { clearLocal, getLocal, setLocal } from '@/utils'
 import { EnumStorageKey } from '@/enum'
+import { fetchLogin } from '@/api'
 
 export const authStore = defineStore('auth-store', {
   state: (): Auth.User => {
@@ -51,14 +52,11 @@ export const authStore = defineStore('auth-store', {
       this.userInfo = user
     },
     async login(params: Api.LoginReq) {
-      /*const { data } = await fetchLogin(params)
+      const { data } = await fetchLogin(params)
 
-      if (data) {
-        this.saveToken(data.tokenValue)
-        this.saveLoginUser(data.user)
-        return Promise.resolve(data.user.userName)
-      }
-      return Promise.reject(false)*/
+      this.saveToken(data.tokenValue)
+      this.saveLoginUser(data.user)
+      return data.user.userName
     },
     tokenExpire() {
       ElNotification({

@@ -1,9 +1,12 @@
 import { Route } from '@/declare/route'
 
+const layoutPage = () => import('@/views/layout/index.vue')
+const ErrorPage = () => import('@/views/exception/404.vue')
+
 export const basicRoutes: Route.MenuToRouteType[] = [
   {
     path: '/',
-    redirect: '/login',
+    redirect: {name: 'Login'},
   },
   {
     path: '/login',
@@ -16,9 +19,18 @@ export const basicRoutes: Route.MenuToRouteType[] = [
   {
     path: '/home',
     name: 'Home',
-    component: () => import('@/views/layout/index.vue'),
+    component: layoutPage,
     meta: {
       title: '首页',
     },
   },
 ]
+
+export const ErrorRoute: Route.MenuToRouteType = {
+  path: '/:pathMatch(.*)*',
+  name: 'NotFound',
+  component: ErrorPage,
+  meta: {
+    title: '错误页',
+  },
+}

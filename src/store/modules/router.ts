@@ -24,7 +24,7 @@ export const routerStore = defineStore('router-store', {
       routers: basicRoutes,
       addRouters: [],
       keepAliveComponents: [],
-      loadedState: false,
+      loadedState: false,//是否已后去服务端的菜单资源
     }
   },
   actions: {
@@ -41,6 +41,7 @@ export const routerStore = defineStore('router-store', {
     setMenus(menus: Route.MenuToRouteType[]) {
       this.menus = routerToMenu(menus)
     },
+    // 从服务端获取用户菜单资源转为页面能用的menu和route
     getUserResourceAndTransform() {
       // 从服务端获取当前用户的菜单资源
       return fetchUserRoutes().then(({ data }) => {
@@ -48,11 +49,11 @@ export const routerStore = defineStore('router-store', {
         const routes = transformUserResourceToRoutes(data.children || [])
         // 生成左侧菜单数据
         this.setMenus(routes)
-        // 为route生成component
-        asyncImportRoute(routes)
 
         // 把多级的路由数组转为二级数组, 解决不能缓存二级路由以下的页面
         const routesFlat = transformRoutesArrToFlat(routes)
+        // 为route生成component
+        asyncImportRoute(routesFlat)
         this.setRouters(routesFlat)
 
         return routesFlat

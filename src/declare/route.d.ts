@@ -34,9 +34,9 @@ declare namespace Route {
   // 前端布局菜单所需结构体
   interface MenuDetailType {
     label: string
-    key: string
+    key: string //值为route的name, 点击菜单用name跳转
     path: string
-    redirect?: string
+    redirect?: { name: string }
     isHidden?: number
     icon?: string
     cpIcon?: string
