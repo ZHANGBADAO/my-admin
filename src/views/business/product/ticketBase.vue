@@ -1,6 +1,26 @@
 <template>
-  <div>ticketBase</div>
+  <div>
+    <div>ticketBase</div>
+    <div>ticketBase</div>
+    <div>ticketBase</div>
+    <div>ticketBase</div>
+    <div>ticketBase</div>
+    <div>ticketBase</div>
+    <div>ticketBase</div>
+    <div>ticketBase</div>
+    <div>ticketBase</div>
+    <div>ticketBase</div>
+    <div>ticketBase</div>
+    <div>ticketBase</div>
+    <div>ticketBase</div>
+    <div>ticketBase</div>
+    <div>ticketBase</div>
+    <div>ticketBase</div>
+    <div>ticketBase</div>
+    <div>ticketBase</div>
+    <div>ticketBase</div>
 
+  </div>
 </template>
 
 <script>

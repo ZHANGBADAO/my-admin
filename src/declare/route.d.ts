@@ -28,7 +28,7 @@ declare namespace Route {
 
   interface BreadCrumbType {
     title: string
-    path: string
+    routeName: string
   }
 
   // 前端布局菜单所需结构体

@@ -1,13 +1,12 @@
 <template>
   <el-container direction="vertical">
+    <Header height="50px" />
 
-    <Header />
-
-    <el-container style="height: calc(100vh - 60px)">
+    <el-container style="height: calc(100vh - 50px)">
       <Aside />
       <el-container>
         <MainView />
-        <el-footer class="">底部信息</el-footer>
+        <el-footer height="50px">底部信息</el-footer>
       </el-container>
     </el-container>
 

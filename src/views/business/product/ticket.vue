@@ -1,5 +1,27 @@
 <template>
-  <div>ticket</div>
+  <div>
+    <div>ticket</div>
+    <div>ticket</div>
+    <div>ticket</div>
+    <div>ticket</div>
+    <div>ticket</div>
+    <div>ticket</div>
+    <div>ticket</div>
+    <div>ticket</div>
+    <div>ticket</div>
+    <div>ticket</div>
+    <div>ticket</div>
+    <div>ticket</div>
+    <div>ticket</div>
+    <div>ticket</div>
+    <div>ticket</div>
+    <div>ticket</div>
+    <div>ticket</div>
+    <div>ticket</div>
+    <div>ticket</div>
+    <div>ticket</div>
+
+  </div>
 </template>
 
 <script>

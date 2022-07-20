@@ -105,7 +105,7 @@ export function transformRoutesArrToFlat(
       children: [],
     }
     const breadCrumbTemp: Route.BreadCrumbType[] = [
-      { title: tempObj.meta!.title as string, path: tempObj.path },
+      { title: tempObj.meta!.title as string, routeName: tempObj.name! },
     ]
 
     if (

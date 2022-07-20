@@ -1,5 +1,5 @@
 <template>
-  <el-header class="flex justify-between">
+  <el-header class="flex justify-between items-center">
     <div class="left-box">
       <img src="" alt="">
       <span>窗口售票系统</span>
