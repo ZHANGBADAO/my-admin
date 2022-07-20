@@ -5,13 +5,12 @@
         label-width="100px"
         ref="formRef"
         :model="formModel"
-        :rules="rules"
-      >
+        :rules="rules">
         <el-form-item label="账号" prop="account">
-          <el-input v-model="formModel.account"/>
+          <el-input v-model="formModel.account" />
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input v-model="formModel.password" type="password"/>
+          <el-input v-model="formModel.password" type="password" />
         </el-form-item>
 
         <div class="flex justify-center">
@@ -23,13 +22,14 @@
 </template>
 
 <script lang="ts" setup>
-import type {FormInstance, FormRules} from 'element-plus'
-import {ElMessage} from "element-plus";
-import {useRouter} from 'vue-router'
+import type { FormInstance, FormRules } from 'element-plus'
+import { ElMessage } from 'element-plus'
+import { useRouter, useRoute } from 'vue-router'
 import { authStore } from '@/store/modules'
 
 const useAuthStore = authStore()
-const router = useRouter()
+const $router = useRouter()
+const $route = useRoute()
 
 const formRef = ref<FormInstance>()
 const formModel = reactive({
@@ -38,31 +38,31 @@ const formModel = reactive({
 })
 
 const rules = reactive<FormRules>({
-  account: [
-    {required: true, message: '请输入', trigger: 'blur'},
-  ],
-  password: [
-    {required: true, message: '请输入', trigger: 'blur'},
-  ],
+  account: [{ required: true, message: '请输入', trigger: 'blur' }],
+  password: [{ required: true, message: '请输入', trigger: 'blur' }],
 })
 
 function submit() {
   formRef.value!.validate((valid) => {
     if (!valid) return
 
-    useAuthStore.login({
-      userPhone: formModel.account,
-      password: formModel.password,
-      verifyCode: '',
-      platform: '',
-    }).then(res => {
-      ElMessage.success('登录成功')
-      router.push('/home')
-    })
+    useAuthStore
+      .login({
+        userPhone: formModel.account,
+        password: formModel.password,
+        verifyCode: '',
+        platform: '',
+      })
+      .then((res) => {
+        ElMessage.success('登录成功')
+        if ($route.query.redirect) {
+          $router.push($route.query.redirect as string)
+        } else {
+          $router.push('/home')
+        }
+      })
   })
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

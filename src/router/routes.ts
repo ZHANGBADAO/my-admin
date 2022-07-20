@@ -6,7 +6,7 @@ const ErrorPage = () => import('@/views/exception/404.vue')
 export const basicRoutes: Route.MenuToRouteType[] = [
   {
     path: '/',
-    redirect: {name: 'Login'},
+    redirect: { name: 'Home' },
   },
   {
     path: '/login',
