@@ -1,7 +1,7 @@
 <template>
   <el-aside width="250px">
     <el-scrollbar>
-      <el-menu style="border-right: 0;" :default-active="defaultActive">
+      <el-menu style="border-right: 0" :default-active="defaultActive">
         <AsideMenuItem :menuArr="menuArr" />
       </el-menu>
     </el-scrollbar>
@@ -9,9 +9,9 @@
 </template>
 
 <script lang="ts" setup>
-import {routerStore} from '@/store/modules'
+import { routerStore } from '@/store/modules'
 import AsideMenuItem from './AsideMenuItem.vue'
-import {useRoute} from 'vue-router'
+import { useRoute } from 'vue-router'
 
 const useRouteStore = routerStore()
 const menuArr = computed(() => {
@@ -19,9 +19,15 @@ const menuArr = computed(() => {
 })
 
 const $route = useRoute()
-const defaultActive = $route.name
+const defaultActive = ref($route.name)
+
+watch(
+  () => useRouteStore.tabActivated,
+  (val) => {
+    if (!val) return
+    defaultActive.value = val.routeName
+  },
+)
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

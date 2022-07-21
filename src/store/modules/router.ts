@@ -15,6 +15,8 @@ interface AsyncRouteState {
   addRouters: any[]
   keepAliveComponents: Array<string>
   loadedState: boolean
+  tabList: Array<Route.tabType>
+  tabActivated: Route.tabType | null
 }
 
 export const routerStore = defineStore('router-store', {
@@ -24,10 +26,26 @@ export const routerStore = defineStore('router-store', {
       routers: basicRoutes,
       addRouters: [],
       keepAliveComponents: [],
-      loadedState: false,//是否已后去服务端的菜单资源
+      loadedState: false, //是否已后去服务端的菜单资源
+      tabList: [], //打开的tab页面
+      tabActivated: null, //激活的tab页面
     }
   },
   actions: {
+    setTabList(tab: Route.tabType, operate: '增加' | '删除') {
+      const index = this.tabList.findIndex(
+        (item) => item.routeName === tab.routeName,
+      )
+
+      if (operate === '增加') {
+        index === -1 && this.tabList.push(tab) //没有才增加
+      } else {
+        this.tabList.splice(index, 1)
+      }
+    },
+    setTabActivated(tab: Route.tabType) {
+      this.tabActivated = tab
+    },
     setKeepAliveComponents(componentNames: string[]) {
       this.keepAliveComponents = componentNames
     },

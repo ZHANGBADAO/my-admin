@@ -3,12 +3,13 @@
     <div class="content-box">
       <el-scrollbar>
         <RouterView v-slot="{ Component, route }">
-
-          <el-breadcrumb separator="/" style="pointer-events:none; margin-bottom: 20px;">
-            <el-breadcrumb-item v-for="item in route.meta.breadCrumb"
-                                :key="item.routeName"
-                                :to="{name: item.routeName}"
-            >
+          <el-breadcrumb
+            separator="/"
+            style="pointer-events: none; margin-bottom: 20px">
+            <el-breadcrumb-item
+              v-for="item in route.meta.breadCrumb"
+              :key="item.routeName"
+              :to="{ name: item.routeName }">
               {{ item.title }}
             </el-breadcrumb-item>
           </el-breadcrumb>
@@ -18,7 +19,6 @@
               <component :is="Component" :key="route.name"></component>
             </keep-alive>
           </transition>
-
         </RouterView>
       </el-scrollbar>
     </div>
@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-import {routerStore} from '@/store/modules'
+import { routerStore } from '@/store/modules'
 
 const asyncRouterStore = routerStore()
 
@@ -36,9 +36,11 @@ const keepAliveComponents = computed(() => {
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/variable.scss';
+
 .content-box {
   height: 100%;
-  background: #f6f6f6;
+  background: $gray-color-1;
   border-radius: 10px;
   padding: 10px;
 }

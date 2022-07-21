@@ -14,6 +14,5 @@ const elConfig = reactive({
 </script>
 
 <style lang="scss">
-@use '@/styles/common.scss';
-//@use '@/styles/tailwindcss.scss';
+@import '@/styles/common.scss';
 </style>

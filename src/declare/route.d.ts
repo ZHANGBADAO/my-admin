@@ -47,4 +47,10 @@ declare namespace Route {
   interface MenuType extends MenuDetailType {
     children?: MenuDetailType[]
   }
+
+  interface tabType {
+    title: string
+    routeName: string
+    icon: string
+  }
 }
