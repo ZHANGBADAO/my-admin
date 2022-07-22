@@ -1,27 +1,29 @@
 <template>
-  <div>
-    <el-scrollbar>
-      <div class="tab-box">
+  <div class="scroll-wrapper" ref="scrollRef">
+    <div class="scroll-content">
+      <div
+        class="tab-item"
+        ref="tabItemRef"
+        v-for="(item, index) in useRouterStore.tabList"
+        :key="item.routeName"
+        @click="jumpPage(item)">
         <div
-          v-for="(item, index) in useRouterStore.tabList"
-          :key="item.routeName"
-          @click="jumpPage(item)"
-          class="tab-item"
+          class="inner"
           :class="{
-            active: tabActivatedComputed.routeName === item.routeName,
+            active: useRouterStore.tabActivated.routeName === item.routeName,
           }">
           <div class="l">
             <Icon :icon="item.icon" />
             <span>{{ item.title }}</span>
           </div>
           <Icon
+            class="r"
             @click.stop="closeTab(item)"
             v-if="index > 0"
-            class="r"
             icon="material-symbols:close" />
         </div>
       </div>
-    </el-scrollbar>
+    </div>
   </div>
 </template>
 
@@ -30,31 +32,73 @@ import { Icon } from '@iconify/vue'
 import { routerStore } from '@/store/modules'
 import { Route } from '@/declare/route'
 import { useRouter, useRoute } from 'vue-router'
+import BScroll from '@better-scroll/core'
+import ScrollBar from '@better-scroll/scroll-bar'
+
 const $router = useRouter()
 const $route = useRoute()
+const useRouterStore = routerStore()
 
 onMounted(() => {
   // 页面第一次打开或刷新页面后, tabList 默认加入当前打开的页面
-  if (useRouterStore.tabList.length === 0) {
-    const tab = {
-      title: $route.meta.title,
-      routeName: $route.name,
-      icon: $route.meta.icon,
-    }
-    useRouterStore.setTabActivated(tab as Route.tabType)
-    useRouterStore.setTabList(tab as Route.tabType, '增加')
+  const tab = {
+    title: $route.meta.title,
+    routeName: $route.name,
+    icon: $route.meta.icon,
   }
+  useRouterStore.setTabActivated(tab as Route.tabType)
+  useRouterStore.setTabList(tab as Route.tabType, '增加')
+
+  initScroll()
 })
 
-const useRouterStore = routerStore()
-const tabActivatedComputed = computed(() => useRouterStore.tabActivated)
+// better-scroll 处理tab的横向滚动
+let bs: any
+const scrollRef = ref<HTMLElement>()
+function initScroll() {
+  BScroll.use(ScrollBar)
+
+  bs = new BScroll(scrollRef.value!, {
+    scrollX: true,
+    scrollY: false,
+    probeType: 1,
+    //@ts-ignore
+    scrollbar: {
+      fade: false,
+      interactive: true,
+      scrollbarTrackClickable: true,
+      scrollbarTrackOffsetType: 'clickedPoint', // can use 'step'
+    },
+  })
+}
+// 监听tabList的长度,发生改变刷新滚动条
+watch(
+  () => useRouterStore.tabList.length,
+  () => {
+    nextTick(() => {
+      bs.refresh()
+    })
+  },
+)
+//监听激活的tab, 把激活的tab滚动到视野内
+const tabItemRef = ref<HTMLElement[]>([])
+watch(
+  () => useRouterStore.tabActivated,
+  (val) => {
+    const tabActivatedIndex = useRouterStore.tabList.findIndex(
+      (item) => item.routeName === val!.routeName,
+    )
+    nextTick(() => {
+      bs && bs.scrollToElement(tabItemRef.value[tabActivatedIndex])
+    })
+  },
+)
 
 // 打开tab对应的页面
 function jumpPage(tab: Route.tabType) {
   $router.push({ name: tab.routeName })
   useRouterStore.setTabActivated(tab)
 }
-
 // 关闭tab对应的页面
 function closeTab(tab: Route.tabType) {
   const closedIndex = useRouterStore.tabList.findIndex(
@@ -82,34 +126,44 @@ function closeTab(tab: Route.tabType) {
 <style lang="scss" scoped>
 @import '@/styles/variable.scss';
 
-.tab-box {
-  display: flex;
-  margin-left: 20px;
-}
-
-.tab-item {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 150px;
-  height: 26px;
-  padding: 0 10px;
-  margin-right: 3px;
-  border-radius: 5px 5px 0 0;
-  background: $gray-color-1;
-  color: $gray-color-5;
-  font-size: 14px;
-  cursor: pointer;
-  &.active {
-    color: $main-color-1;
-  }
-  .l {
-    display: flex;
-    align-items: center;
-    span {
-      margin-left: 5px;
+.scroll-wrapper {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-bottom: 5px;
+  .scroll-content {
+    margin-left: 20px;
+    display: inline-block;
+    .tab-item {
+      display: inline-block;
+      margin-right: 3px;
+      .inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 150px;
+        height: 26px;
+        padding: 0 10px;
+        border-radius: 5px 5px 0 0;
+        background: $gray-color-1;
+        color: $gray-color-5;
+        font-size: 14px;
+        cursor: pointer;
+        &.active {
+          color: $main-color-1;
+        }
+        .l {
+          display: flex;
+          align-items: center;
+          span {
+            margin-left: 5px;
+          }
+        }
+      }
     }
+  }
+  :deep(.bscroll-indicator) {
+    background: rgba(0, 0, 0, 0.2) !important;
   }
 }
 </style>

@@ -27,8 +27,8 @@ export const routerStore = defineStore('router-store', {
       addRouters: [],
       keepAliveComponents: [],
       loadedState: false, //是否已后去服务端的菜单资源
-      tabList: [], //打开的tab页面
-      tabActivated: null, //激活的tab页面
+      tabList: [], //打开的tab
+      tabActivated: null, //激活的tab
     }
   },
   actions: {
