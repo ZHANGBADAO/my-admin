@@ -1,4 +1,3 @@
-import { consoleWarn } from '@/utils'
 import type { RouteComponent } from 'vue-router'
 import { Route } from '@/declare/route'
 
@@ -9,7 +8,7 @@ export const transformUserResourceToRoutes = (
 ): Route.MenuToRouteType[] => {
   return resource.map((item) => {
     let routePath = ''
-    // 路由name: 用path动态拼接生成如 dashboard_workplace
+    // 路由name: 用path动态拼接生成如 dashboard_workplace; 新建页面组件时,组件的name要和路由name保持一致
     let routeName = ''
     if (parent && parent.path) {
       routePath = item.data.path
@@ -25,23 +24,21 @@ export const transformUserResourceToRoutes = (
       // 该路由对应页面的组件路径
       component: item.data.component!,
       meta: {
+        title: item.data.menuName,
         // 组件名称
         componentName: routeName,
-        value: item.data.id,
-        title: item.data.menuName,
-        label: item.data.menuName,
         icon: item.data.icon!,
         level: item.data.level,
+        permissions: item.data.permission,
+        ignoreAuth: item.data.ignoreAuth,
+        isKeepalive: item.data.isKeepalive,
         isHidden: item.data.isHidden,
-        sortNo: item.data.sortNo,
-        permissions: item.data.permission!,
-        ignoreAuth: false,
       },
     }
 
     // 是否有子菜单，并递归处理
     if (item.children && item.children.length) {
-      // redirectPath的值是route的name, 不是path; 用路由的name进行跳转(由于把多级路由转为二级,拼接path就不适用了)
+      // redirectPath的值是route的name(也就是页面组件name);不是path,用路由的name进行跳转(由于把多级路由转为二级,拼接path就不适用了)
       if (item.data.redirectPath) {
         currentRouter.redirect = {
           name: item.data.redirectPath,
@@ -98,8 +95,8 @@ export function transformRoutesArrToFlat(
   routes.forEach((route) => {
     const tempObj: Route.MenuToRouteType = {
       path: route.path,
-      component: route.component,
       name: route.name,
+      component: route.component,
       meta: route.meta,
       redirect: route.redirect,
       children: [],

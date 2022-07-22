@@ -90,6 +90,7 @@ const menuArr = [
               "level": 3,
               "permission": "",
               "isHidden": 0,
+              "isKeepalive": 1,
               "menuName": "三级目录12",
               "sortNo": "1654479284553",
               "path": "tertiary12",

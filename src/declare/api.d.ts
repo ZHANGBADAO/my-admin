@@ -4,23 +4,14 @@ declare namespace Api {
     pid: string
     level: number
     menuName: string
-    sortNo: string
     path: string
     isLink: number
-    isMain: number
     isHidden: number
     isKeepalive: number
-    isHarden: number
-    ctime: string
-    microConfigId?: string
     permission?: string
     component?: string
-    linkPath?: string
     icon?: string
-    ext?: string
-    utime?: string
     redirectPath?: string
-    frameSrc?: string
     ignoreAuth?: boolean
   }
 

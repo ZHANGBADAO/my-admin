@@ -1,4 +1,4 @@
-import type {Router, RouteRecordRaw} from 'vue-router'
+import type { Router, RouteRecordRaw } from 'vue-router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { RouteEnum } from '@/enum'
@@ -56,7 +56,9 @@ export function createRouterGuards(router: Router) {
     console.log('服务端获取的菜单转为路由', routesFlat)
 
     // 配置404错误路由
-    const isErrorPage = router.getRoutes().findIndex((item) => item.name === 'NotFound')
+    const isErrorPage = router
+      .getRoutes()
+      .findIndex((item) => item.name === 'NotFound')
     if (isErrorPage === -1) {
       router.addRoute(ErrorRoute as RouteRecordRaw)
     }
@@ -69,13 +71,14 @@ export function createRouterGuards(router: Router) {
     document.title = `${to.meta.title as string} - ${VITE_APP_NAME}`
 
     // 处理组件是否缓存
-    const keepaliveComponents = asyncRouteStore.keepAliveComponents
     if (to.meta.isKeepalive) {
       // 需要缓存的组件
-      !keepaliveComponents.includes(to.name as string) &&
-        keepaliveComponents.push(to.name as string)
+      const aliveComponentsArr = asyncRouteStore.keepAliveComponents
+      if (!aliveComponentsArr.includes(to.meta.componentName as string)) {
+        aliveComponentsArr.push(to.meta.componentName as string)
+        asyncRouteStore.setKeepAliveComponents(aliveComponentsArr)
+      }
     }
-    asyncRouteStore.setKeepAliveComponents(keepaliveComponents)
 
     NProgress.done()
   })

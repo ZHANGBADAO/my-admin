@@ -104,8 +104,17 @@ function closeTab(tab: Route.tabType) {
   const closedIndex = useRouterStore.tabList.findIndex(
     (item) => item.routeName === tab.routeName,
   )
+
   //TabList中删除tab
   useRouterStore.setTabList(tab, '删除')
+
+  // 缓存的组件数组中删除当前tab的name
+  const aliveComponentsArr = useRouterStore.keepAliveComponents
+  if (aliveComponentsArr.includes(tab.routeName)) {
+    const index = aliveComponentsArr.indexOf(tab.routeName)
+    aliveComponentsArr.splice(index, 1)
+    useRouterStore.setKeepAliveComponents(aliveComponentsArr)
+  }
 
   //当前tab删除后,closedIndex为后一个tab的index
   let lastTab = useRouterStore.tabList[closedIndex]

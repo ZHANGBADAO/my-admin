@@ -1,28 +1,24 @@
-import type { VNode } from 'vue'
 import { RouteComponent } from 'vue-router'
 
 declare namespace Route {
-  // 菜单转换为route
+  // 服务端获取的菜单资源转换为route
   interface MenuToRouteType {
     path: string
-    name?: string
+    name?: string //路由名称和组件名称一致
     redirect?: { name: string }
     // 该路由对应页面的组件路径
     component?: string | (() => Promise<RouteComponent>)
     children?: MenuToRouteType[]
     meta?: {
-      title: string
-      // 组件名称
-      componentName?: string
-      value?: string
-      label?: string
+      title: string //路由中文
+      componentName?: string // 组件名称
       icon?: string
-      level?: number
-      isHidden?: number
-      sortNo?: string
-      permissions?: string
-      ignoreAuth?: boolean
-      breadCrumb?: BreadCrumbType[]
+      level?: number //路由层级
+      permissions?: string //按钮权限
+      ignoreAuth?: boolean //是否忽略权限
+      isKeepalive?: number //是否缓存
+      isHidden?: number //是否隐藏
+      breadCrumb?: BreadCrumbType[] //面包屑导航
     }
   }
 
@@ -32,20 +28,14 @@ declare namespace Route {
   }
 
   // 前端布局菜单所需结构体
-  interface MenuDetailType {
+  interface MenuType {
     label: string
     key: string //值为route的name, 点击菜单用name跳转
-    path: string
     redirect?: { name: string }
     isHidden?: number
     icon?: string
-    cpIcon?: string
     level?: number
-    value?: string
-  }
-
-  interface MenuType extends MenuDetailType {
-    children?: MenuDetailType[]
+    children?: MenuType[]
   }
 
   interface tabType {

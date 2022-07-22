@@ -12,7 +12,7 @@ import { fetchUserRoutes } from '@/api'
 interface AsyncRouteState {
   menus: Route.MenuType[]
   routers: Route.MenuToRouteType[]
-  addRouters: any[]
+  addRouters: Route.MenuToRouteType[]
   keepAliveComponents: Array<string>
   loadedState: boolean
   tabList: Array<Route.tabType>
@@ -25,7 +25,7 @@ export const routerStore = defineStore('router-store', {
       menus: [],
       routers: basicRoutes,
       addRouters: [],
-      keepAliveComponents: [],
+      keepAliveComponents: [], //缓存的页面,数组元素的值为组件的name (keep-alive是通过组件的name缓存组件)
       loadedState: false, //是否已后去服务端的菜单资源
       tabList: [], //打开的tab
       tabActivated: null, //激活的tab
@@ -59,13 +59,13 @@ export const routerStore = defineStore('router-store', {
     setMenus(menus: Route.MenuToRouteType[]) {
       this.menus = routerToMenu(menus)
     },
-    // 从服务端获取用户菜单资源转为页面能用的menu和route
+    // 从服务端获取用户菜单资源转为页面能用的route和menu
     getUserResourceAndTransform() {
       // 从服务端获取当前用户的菜单资源
       return fetchUserRoutes().then(({ data }) => {
         // 菜单资源转为route
         const routes = transformUserResourceToRoutes(data.children || [])
-        // 生成左侧菜单数据
+        // 用route生成左侧菜单数据
         this.setMenus(routes)
 
         // 把多级的路由数组转为二级数组, 解决不能缓存二级路由以下的页面
