@@ -1,5 +1,5 @@
 <template>
-  <el-main>
+  <el-main style="padding-top: 0; padding-bottom: 0">
     <div class="content-box">
       <el-scrollbar>
         <RouterView v-slot="{ Component, route }">
@@ -40,7 +40,7 @@ const keepAliveComponents = computed(() => {
 
 .content-box {
   height: 100%;
-  background: $gray-color-1;
+  background: #fff;
   border-radius: 10px;
   padding: 10px;
 }

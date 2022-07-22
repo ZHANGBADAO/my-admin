@@ -136,16 +136,20 @@ function closeTab(tab: Route.tabType) {
 @import '@/styles/variable.scss';
 
 .scroll-wrapper {
+  margin: 0 20px;
   position: relative;
   overflow: hidden;
   white-space: nowrap;
   padding-bottom: 5px;
   .scroll-content {
-    margin-left: 20px;
     display: inline-block;
     .tab-item {
       display: inline-block;
       margin-right: 3px;
+      border-radius: 5px 5px 0 0;
+      background: #fff;
+      cursor: pointer;
+
       .inner {
         display: flex;
         align-items: center;
@@ -153,11 +157,8 @@ function closeTab(tab: Route.tabType) {
         width: 150px;
         height: 26px;
         padding: 0 10px;
-        border-radius: 5px 5px 0 0;
-        background: $gray-color-1;
         color: $gray-color-5;
         font-size: 14px;
-        cursor: pointer;
         &.active {
           color: $main-color-1;
         }
