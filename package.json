@@ -8,7 +8,6 @@
     "dev:production": "vite --mode production",
     "build": "vite build",
     "build:test": "vite build --mode test",
-    "build:production": "vite build --mode production",
     "preview": "vite preview",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
