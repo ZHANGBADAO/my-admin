@@ -11,6 +11,7 @@ function transformMenuResource(routes: Route.MenuToRouteType[]) {
   return routes.map((item) => {
     const $tmp: Route.MenuType = {
       label: item.meta!.title,
+      value: item.meta!.value!,
       key: item.name!,
       icon: item.meta!.icon,
       redirect: item.redirect,

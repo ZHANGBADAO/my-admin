@@ -28,6 +28,7 @@ export const transformUserResourceToRoutes = (
         // 组件名称
         componentName: routeName,
         icon: item.data.icon!,
+        value: item.data.id!,
         level: item.data.level,
         permissions: item.data.permission,
         ignoreAuth: item.data.ignoreAuth,

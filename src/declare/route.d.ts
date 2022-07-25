@@ -12,6 +12,7 @@ declare namespace Route {
     meta?: {
       title: string //路由中文
       componentName?: string // 组件名称
+      value?: string // 菜单资源的id
       icon?: string
       level?: number //路由层级
       permissions?: string //按钮权限
@@ -30,6 +31,7 @@ declare namespace Route {
   // 前端布局菜单所需结构体
   interface MenuType {
     label: string
+    value: string
     key: string //值为route的name, 点击菜单用name跳转
     redirect?: { name: string }
     isHidden?: number
