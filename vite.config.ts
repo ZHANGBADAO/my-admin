@@ -29,7 +29,7 @@ export default defineConfig(({ command, mode }) => {
         ignore: /^_/,
         mockPath: "mock",
         localEnabled: true, //本地开发环境启用mock
-        prodEnabled: mode === 'test', //生产环境启用mock(build模式为test时才启用)
+        prodEnabled: mode === "test", //生产环境启用mock(build模式为test时才启用)
         injectCode: `
           import { setupProdMockServer } from '/mock/_createProductionServer';
           setupProdMockServer();

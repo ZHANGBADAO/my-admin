@@ -3,7 +3,7 @@ import { successResult } from './_tool'
 
 export default [
   {
-    url: '/dev/user/login',
+    url: "/dev/user/login",
     method: 'post',
     response: ({ body }: reqType) => {
       console.log('body', body.password)
