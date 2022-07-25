@@ -24,9 +24,14 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
     viteMockServe({
+      ignore: /^_/,
       mockPath: 'mock',
       localEnabled: true, //本地启用mock
-      prodEnabled: false, //生产环境禁用
+      prodEnabled: true, //生产环境启用mock
+      injectCode: `
+          import { setupProdMockServer } from '/mock/_createProductionServer';
+          setupProdMockServer();
+        `,
     }),
   ],
   envDir: './env',

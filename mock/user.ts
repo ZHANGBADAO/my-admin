@@ -1,5 +1,5 @@
 import { MockMethod } from 'vite-plugin-mock'
-import { successResult } from './tool'
+import { successResult } from './_tool'
 
 export default [
   {
