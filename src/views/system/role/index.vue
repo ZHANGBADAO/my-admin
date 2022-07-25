@@ -86,6 +86,11 @@
   </div>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'system_role',
+}
+</script>
 <script lang="ts" setup>
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Icon } from '@iconify/vue'

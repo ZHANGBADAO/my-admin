@@ -27,7 +27,7 @@ export default defineConfig(({ command, mode }) => {
       }),
       viteMockServe({
         ignore: /^_/,
-        mockPath: 'mock',
+        mockPath: "mock",
         localEnabled: true, //本地开发环境启用mock
         prodEnabled: mode === 'test', //生产环境启用mock(build模式为test时才启用)
         injectCode: `

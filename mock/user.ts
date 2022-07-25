@@ -237,6 +237,7 @@ const menuArr = [
           "level": 3,
           "permission": "",
           "isHidden": 0,
+          "isKeepalive": 1,
           "menuName": "角色管理",
           "sortNo": "1652164849052",
           "path": "role",
