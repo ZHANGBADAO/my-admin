@@ -14,7 +14,13 @@
     "commit": "cz"
   },
   "lint-staged": {
-    "{src/**/*.{ts,js,vue}, mock/**/*.ts, ./vite.config.ts}": [
+    "src/**/*.{ts,js,vue}": [
+      "eslint --fix"
+    ],
+    "mock/**/*.ts": [
+      "eslint --fix"
+    ],
+    "./vite.config.ts": [
       "eslint --fix"
     ]
   },
