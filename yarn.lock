@@ -577,7 +577,7 @@
     "@vue/compiler-core" "3.2.37"
     "@vue/shared" "3.2.37"
 
-"@vue/compiler-sfc@3.2.37", "@vue/compiler-sfc@^3.2.36":
+"@vue/compiler-sfc@3.2.37", "@vue/compiler-sfc@^3.2.36", "@vue/compiler-sfc@^3.2.37":
   version "3.2.37"
   resolved "https://registry.npmmirror.com/@vue/compiler-sfc/-/compiler-sfc-3.2.37.tgz#3103af3da2f40286edcd85ea495dcb35bc7f5ff4"
   integrity sha512-+7i/2+9LYlpqDv+KTtWhOZH+pa8/HnX/905MdVmAcI/mPQOBwkHHIzrsEsucyOIZQYMkXUiTkmZq5am/NyXKkg==
@@ -4045,6 +4045,15 @@ unplugin-vue-components@^0.21.1:
     magic-string "^0.26.2"
     minimatch "^5.1.0"
     resolve "^1.22.1"
+    unplugin "^0.7.1"
+
+unplugin-vue-define-options@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.npmmirror.com/unplugin-vue-define-options/-/unplugin-vue-define-options-0.6.2.tgz#9fca2d8ecb097500b236d2e41c58835bc8e41cd4"
+  integrity sha512-0YAbugPnN57ZkUM0fygfp43Vm321vOUYy2s81O09SfCM08mSul4vMxOZxLj9VSa3NVPF/IN0FmGyTMB5exOdyQ==
+  dependencies:
+    "@rollup/pluginutils" "^4.2.1"
+    "@vue/compiler-sfc" "^3.2.37"
     unplugin "^0.7.1"
 
 unplugin@^0.7.0, unplugin@^0.7.1:

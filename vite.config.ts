@@ -4,12 +4,14 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { viteMockServe } from 'vite-plugin-mock'
+import DefineOptions from 'unplugin-vue-define-options/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   return {
     plugins: [
       vue(),
+      DefineOptions(),
       AutoImport({
         imports: ['vue', 'vue-router'],
         dts: 'src/declare/auto-imports.d.ts',

@@ -86,17 +86,16 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'system_role',
-}
-</script>
 <script lang="ts" setup>
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Icon } from '@iconify/vue'
 import { AddRole, SetAuth, CheckAuth, RelateMember } from './components'
 import { queryRoles, deleteRole } from '@/api'
 import { consoleError } from '@/utils'
+
+defineOptions({
+  name: 'system_role',
+})
 
 const state = reactive<{ roleList: Api.RoleType[]; loading: boolean }>({
   roleList: [],

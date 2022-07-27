@@ -4,13 +4,12 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'business_secondary2_tertiary22',
-}
-</script>
 <script setup lang="ts">
 import { fetchUserRoutes } from '@/api'
+
+defineOptions({
+  name: 'business_secondary2_tertiary22',
+})
 
 fetchUserRoutes().then(({ data }) => {
   console.log('business_secondary2_tertiary22', data)
