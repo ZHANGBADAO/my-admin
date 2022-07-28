@@ -23,7 +23,7 @@
     </div>
 
     <div class="bottom-box" style="padding-top: 50px">
-      <el-row :gutter="20">
+      <el-row :gutter="0">
         <el-col :span="6">
           <el-card class="box-card">
             <el-tree
@@ -40,7 +40,7 @@
               @node-click="handleNodeClick" />
           </el-card>
         </el-col>
-        <el-col :span="18">
+        <el-col :span="18" style="padding-left: 10px">
           <div class="top" style="margin-bottom: 20px">
             <el-tag>部门列表</el-tag>
             <el-table
@@ -167,6 +167,10 @@ import {
 import type { Tree, DepartmentInfo } from '@/api'
 import { AddOrEditDepartment, ToggleDepartment } from './components'
 import { pager } from '@/utils'
+
+defineOptions({
+  name: 'system_department',
+})
 
 onMounted(() => {
   getDepartmentTree() // 左侧树

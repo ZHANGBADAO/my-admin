@@ -10,3 +10,12 @@ body{
   margin: 0;
   padding: 0;
 }
+
+//组件内容根结点样式
+.container-box {
+}
+
+//分页节点样式
+.pagination-wrapper {
+  @apply mt-5 flex items-center justify-center;
+}

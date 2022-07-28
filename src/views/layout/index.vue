@@ -5,11 +5,15 @@
     <el-container style="height: calc(100vh - 50px)">
       <Aside />
       <el-container>
-        <TabBar />
-        <MainView />
-        <el-footer height="50px" class="flex justify-center items-center"
-          >底部信息</el-footer
-        >
+        <el-header style="height: unset">
+          <TabBar />
+        </el-header>
+        <el-main style="padding-top: 0; padding-bottom: 0">
+          <MainView />
+        </el-main>
+        <el-footer height="50px" class="flex justify-center items-center">
+          <span>底部信息</span>
+        </el-footer>
       </el-container>
     </el-container>
   </el-container>

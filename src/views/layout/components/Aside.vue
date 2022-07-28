@@ -1,7 +1,9 @@
 <template>
   <el-aside width="250px">
-    <el-scrollbar>
-      <el-menu style="border-right: 0" :default-active="defaultActive">
+    <el-scrollbar style="padding-left: 20px">
+      <el-menu
+        style="border-right: 0; border-radius: 10px; overflow: hidden"
+        :default-active="defaultActive">
         <AsideMenuItem :menuArr="menuArr" />
       </el-menu>
     </el-scrollbar>

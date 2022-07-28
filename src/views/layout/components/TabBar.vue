@@ -136,7 +136,6 @@ function closeTab(tab: Route.tabType) {
 @import '@/styles/variable.scss';
 
 .scroll-wrapper {
-  margin: 0 20px;
   position: relative;
   overflow: hidden;
   white-space: nowrap;
