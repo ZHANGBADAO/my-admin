@@ -22,8 +22,13 @@ export default defineComponent({
                   fill="#E4EBF7"
                   mask="url(#b)"></path>
               </g>
-              <path d="M39.989 132.108a8.332 8.332 0 1 1-16.581-1.671 8.332 8.332 0 0 1 16.58 1.671" fill="#FFF"></path>
-              <path d="M37.19 135.59l10.553 5.983M48.665 147.884l-12.734 10.861" stroke="#FFF" stroke-width="2"></path>
+              <path
+                d="M39.989 132.108a8.332 8.332 0 1 1-16.581-1.671 8.332 8.332 0 0 1 16.58 1.671"
+                fill="#FFF"></path>
+              <path
+                d="M37.19 135.59l10.553 5.983M48.665 147.884l-12.734 10.861"
+                stroke="#FFF"
+                stroke-width="2"></path>
               <path
                 d="M40.11 160.816a5.706 5.706 0 1 1-11.354-1.145 5.706 5.706 0 0 1 11.354 1.145M57.943 144.6a5.747 5.747 0 1 1-11.436-1.152 5.747 5.747 0 0 1 11.436 1.153M99.656 27.434l30.024-.013a4.619 4.619 0 1 0-.004-9.238l-30.024.013a4.62 4.62 0 0 0 .004 9.238M111.14 45.896l30.023-.013a4.62 4.62 0 1 0-.004-9.238l-30.024.013a4.619 4.619 0 1 0 .004 9.238"
                 fill="#FFF"></path>
@@ -220,7 +225,10 @@ export default defineComponent({
                 d="M237.824 212.977a4.813 4.813 0 0 1-4.813 4.813h-86.636a4.813 4.813 0 0 1 0-9.626h86.636a4.813 4.813 0 0 1 4.813 4.813"
                 fill="#A3B4C6"></path>
               <mask fill="#fff"></mask>
-              <path fill="#A3B4C6" mask="url(#d)" d="M154.098 190.096h70.513v-84.617h-70.513z"></path>
+              <path
+                fill="#A3B4C6"
+                mask="url(#d)"
+                d="M154.098 190.096h70.513v-84.617h-70.513z"></path>
               <path
                 d="M224.928 190.096H153.78a3.219 3.219 0 0 1-3.208-3.209V167.92a3.219 3.219 0 0 1 3.208-3.21h71.148a3.219 3.219 0 0 1 3.209 3.21v18.967a3.219 3.219 0 0 1-3.21 3.209M224.928 130.832H153.78a3.218 3.218 0 0 1-3.208-3.208v-18.968a3.219 3.219 0 0 1 3.208-3.209h71.148a3.219 3.219 0 0 1 3.209 3.21v18.967a3.218 3.218 0 0 1-3.21 3.208"
                 fill="#BFCDDD"
@@ -272,7 +280,9 @@ export default defineComponent({
         </div>
         <div class="flex flex-col">
           <h1 class="transition-all text-6xl font-bold text-slate-800">500</h1>
-          <h1 class="text-base font-mono p-4 text-slate-400">对不起，服务器出现问题</h1>
+          <h1 class="text-base font-mono p-4 text-slate-400">
+            对不起，服务器出现问题
+          </h1>
           <router-link
             to="/"
             class="bg-gradient-to-r py-2 rounded-full from-purple-400 to-blue-500 hover:from-purple-600 hover:to-purple-900 text-white font-semibold px-6"

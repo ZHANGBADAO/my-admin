@@ -11,6 +11,7 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
+    "lint:eslint": "eslint --cache \"{src,mock}/**/*.{vue,ts,js}\" --fix",
     "commit": "cz"
   },
   "lint-staged": {
