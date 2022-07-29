@@ -15,14 +15,12 @@
     "commit": "cz"
   },
   "lint-staged": {
-    "src/**/*.{ts,js,vue}": [
-      "eslint --fix"
+    "*.{ts,js,vue}": [
+      "eslint --fix",
+      "prettier --write"
     ],
-    "mock/**/*.ts": [
-      "eslint --fix"
-    ],
-    "./vite.config.ts": [
-      "eslint --fix"
+    "*.{scss,html}": [
+      "prettier --write"
     ]
   },
   "dependencies": {
