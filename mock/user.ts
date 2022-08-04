@@ -46,14 +46,14 @@ export default [
   },
   {
     url: '/dev/tenant/role/user/list',
-    method: 'POST',
+    method: 'post',
     response: ({ body }: reqType) => {
       return successResult(userListArr)
     },
   },
   {
     url: '/dev/tenant/findByPage',
-    method: 'POST',
+    method: 'post',
     response: ({ body }: reqType) => {
       return successResult({
         total: 13,
