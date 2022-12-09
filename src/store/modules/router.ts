@@ -43,7 +43,10 @@ export const routerStore = defineStore('router-store', {
         this.tabList.splice(index, 1)
       }
     },
-    setTabActivated(tab: Route.tabType) {
+    deleteAllTab() {
+      this.tabList = []
+    },
+    setTabActivated(tab: Route.tabType | null) {
       this.tabActivated = tab
     },
     setKeepAliveComponents(componentNames: string[]) {

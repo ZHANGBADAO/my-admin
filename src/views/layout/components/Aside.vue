@@ -3,6 +3,7 @@
     <el-scrollbar style="padding-left: 20px">
       <el-menu
         style="border-right: 0; border-radius: 10px; overflow: hidden"
+        :collapse="false"
         :default-active="defaultActive">
         <AsideMenuItem :menuArr="menuArr" />
       </el-menu>
@@ -26,8 +27,7 @@ const defaultActive = ref($route.name)
 watch(
   () => useRouteStore.tabActivated,
   (val) => {
-    if (!val) return
-    defaultActive.value = val.routeName
+    defaultActive.value = val?.routeName
   },
 )
 </script>
