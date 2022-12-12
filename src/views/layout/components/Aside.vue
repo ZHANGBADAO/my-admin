@@ -3,7 +3,7 @@
     <el-scrollbar style="padding-left: 20px">
       <el-menu
         style="border-right: 0; border-radius: 10px; overflow: hidden"
-        :collapse="false"
+        :collapse="isCollapse"
         :default-active="defaultActive">
         <AsideMenuItem :menuArr="menuArr" />
       </el-menu>
@@ -30,6 +30,9 @@ watch(
     defaultActive.value = val?.routeName
   },
 )
+
+// 折叠菜单
+const isCollapse = ref(false)
 </script>
 
 <style lang="scss" scoped></style>

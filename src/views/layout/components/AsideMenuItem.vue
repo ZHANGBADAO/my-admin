@@ -3,12 +3,8 @@
     <template v-if="menuItem.children?.length > 0">
       <el-sub-menu :index="menuItem.key">
         <template #title>
-          <div
-            @click="redirectHandle(menuItem)"
-            style="flex: 1; display: flex; align-items: center">
-            <Icon class="mr-2" :icon="menuItem.icon" />
-            <span>{{ menuItem.label }}</span>
-          </div>
+          <Icon class="mr-2" :icon="menuItem.icon" />
+          <span @click="redirectHandle(menuItem)">{{ menuItem.label }}</span>
         </template>
 
         <AsideMenuItem :menuArr="menuItem.children" />
