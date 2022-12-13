@@ -50,18 +50,22 @@ function logOutHandle() {
 }
 
 //切换主题
-const themeStatus = ref('light')
+const themeStatus = ref(localStorage.getItem('theme') || 'light')
+const htmlNode = document.querySelector('html')
+htmlNode!.classList.add(themeStatus.value)
+
 watch(themeStatus, () => {
   changeThemeFn()
 })
 function changeThemeFn() {
-  const htmlNode = document.querySelector('html')
   if (htmlNode!.classList.contains('light')) {
     htmlNode!.classList.remove('light')
     htmlNode!.classList.add('dark')
+    localStorage.setItem('theme', 'dark')
   } else {
     htmlNode!.classList.remove('dark')
     htmlNode!.classList.add('light')
+    localStorage.setItem('theme', 'light')
   }
 }
 </script>
