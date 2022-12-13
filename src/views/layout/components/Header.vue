@@ -54,19 +54,13 @@ const themeStatus = ref(localStorage.getItem('theme') || 'light')
 const htmlNode = document.querySelector('html')
 htmlNode!.classList.add(themeStatus.value)
 
-watch(themeStatus, () => {
-  changeThemeFn()
+watch(themeStatus, (val) => {
+  changeThemeFn(val)
 })
-function changeThemeFn() {
-  if (htmlNode!.classList.contains('light')) {
-    htmlNode!.classList.remove('light')
-    htmlNode!.classList.add('dark')
-    localStorage.setItem('theme', 'dark')
-  } else {
-    htmlNode!.classList.remove('dark')
-    htmlNode!.classList.add('light')
-    localStorage.setItem('theme', 'light')
-  }
+function changeThemeFn(themeVal: string) {
+  htmlNode!.classList.remove('light', 'dark')
+  htmlNode!.classList.add(themeVal)
+  localStorage.setItem('theme', themeVal)
 }
 </script>
 
