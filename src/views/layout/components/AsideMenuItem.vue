@@ -3,7 +3,9 @@
     <template v-if="menuItem.children?.length > 0">
       <el-sub-menu :index="menuItem.key">
         <template #title>
-          <Icon class="mr-2" :icon="menuItem.icon" />
+          <div style="padding: 0 3px">
+            <Icon width="16" :icon="menuItem.icon" />
+          </div>
           <span @click="redirectHandle(menuItem)">{{ menuItem.label }}</span>
         </template>
 
@@ -12,7 +14,9 @@
     </template>
     <template v-else>
       <el-menu-item :index="menuItem.key" @click="pageJump(menuItem)">
-        <Icon class="mr-2" :icon="menuItem.icon" />
+        <div style="padding: 0 3px">
+          <Icon width="16" :icon="menuItem.icon" />
+        </div>
         <span>{{ menuItem.label }}</span>
       </el-menu-item>
     </template>
