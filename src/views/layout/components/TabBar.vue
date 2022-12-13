@@ -236,8 +236,6 @@ function moveFn(direction: 'left' | 'right') {
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/variable.scss';
-
 .scroll-wrapper {
   display: flex;
   padding-bottom: 5px;
@@ -259,7 +257,7 @@ function moveFn(direction: 'left' | 'right') {
         display: inline-block;
         margin-right: 3px;
         border-radius: 5px 5px 0 0;
-        background: #fff;
+        background: var(--gray-color-0);
         cursor: pointer;
 
         .inner {
@@ -269,10 +267,10 @@ function moveFn(direction: 'left' | 'right') {
           width: 150px;
           height: 26px;
           padding: 0 10px;
-          color: $gray-color-5;
+          color: var(--gray-color-5);
           font-size: 14px;
           &.active {
-            color: $main-color-1;
+            color: var(--main-color-1);
           }
           .l {
             display: flex;

@@ -5,7 +5,16 @@
       <span>窗口售票系统</span>
     </div>
     <div class="middle-box"></div>
-    <div class="right-box">
+    <div class="right-box flex items-center">
+      <el-switch
+        v-model="themeStatus"
+        active-value="light"
+        inactive-value="dark"
+        class="mr-4"
+        inline-prompt
+        :active-icon="Sunny"
+        :inactive-icon="Moon" />
+
       <el-dropdown>
         <div class="flex items-center">
           <div class="mr-2">{{ useAuthStore.getUserInfo.userName }}</div>
@@ -32,11 +41,28 @@
 </template>
 
 <script lang="ts" setup>
+import { Sunny, Moon } from '@element-plus/icons-vue'
 import { authStore } from '@/store/modules'
 const useAuthStore = authStore()
 
 function logOutHandle() {
   useAuthStore.manualLoginOut()
+}
+
+//切换主题
+const themeStatus = ref('light')
+watch(themeStatus, () => {
+  changeThemeFn()
+})
+function changeThemeFn() {
+  const htmlNode = document.querySelector('html')
+  if (htmlNode!.classList.contains('light')) {
+    htmlNode!.classList.remove('light')
+    htmlNode!.classList.add('dark')
+  } else {
+    htmlNode!.classList.remove('dark')
+    htmlNode!.classList.add('light')
+  }
 }
 </script>
 

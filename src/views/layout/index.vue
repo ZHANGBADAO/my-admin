@@ -24,8 +24,7 @@ import { Header, MainView, Aside, TabBar } from './components'
 </script>
 
 <style scoped lang="scss">
-@import '@/styles/variable.scss';
 .big-box {
-  background: $gray-color-1;
+  background: var(--gray-color-1);
 }
 </style>

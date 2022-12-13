@@ -34,11 +34,9 @@ const keepAliveComponents = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/variable.scss';
-
 .content-box {
   height: 100%;
-  background: #fff;
+  background: var(--gray-color-0);
   border-radius: 10px;
   padding: 20px;
 }

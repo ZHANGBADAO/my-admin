@@ -56,7 +56,7 @@ function changeCollapseFn() {
   margin-left: 20px;
   margin-bottom: 50px;
   padding-bottom: 30px;
-  background: #fff;
+  background: var(--gray-color-0);
   border-radius: 10px;
   overflow: hidden;
   position: relative;

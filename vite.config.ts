@@ -24,7 +24,7 @@ export default defineConfig(({ command, mode }) => {
         deep: true,
         // 配置文件生成位置
         dts: 'src/declare/components.d.ts',
-        resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver({ importStyle: 'sass' })],
       }),
       viteMockServe({
         ignore: /^_/,
@@ -37,6 +37,13 @@ export default defineConfig(({ command, mode }) => {
         `,
       }),
     ],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "@/styles/element.scss" as *;`,
+        },
+      },
+    },
     envDir: './env',
     server: {
       host: true,

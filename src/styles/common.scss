@@ -1,12 +1,13 @@
-body{
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei,
-  Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC,
+    Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   font-variant: tabular-nums;
-  font-feature-settings: "tnum";
+  font-feature-settings: 'tnum';
   -webkit-font-smoothing: antialiased;
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
 }
@@ -18,4 +19,35 @@ body{
 //分页节点样式
 .pagination-wrapper {
   @apply mt-5 flex items-center justify-center;
+}
+
+.dark {
+  --main-color-1: #409eff;
+  --main-color-2: #66b1ff;
+  --main-color-3: #3375b9;
+  --main-color-4: #2a598a;
+  --main-color-5: #213d5b;
+
+  --gray-color-6: #f6f6f6;
+  --gray-color-5: #cfd3dc;
+  --gray-color-4: #a3a6ad;
+  --gray-color-3: #8d9095;
+  --gray-color-2: #6c6e72;
+  --gray-color-1: #363636;
+  --gray-color-0: #2f2f2f;
+}
+.light {
+  --main-color-1: #409eff;
+  --main-color-2: #66b1ff;
+  --main-color-3: #3375b9;
+  --main-color-4: #2a598a;
+  --main-color-5: #213d5b;
+
+  --gray-color-0: #ffffff;
+  --gray-color-1: #f6f6f6;
+  --gray-color-2: #cfd3dc;
+  --gray-color-3: #a3a6ad;
+  --gray-color-4: #8d9095;
+  --gray-color-5: #6c6e72;
+  --gray-color-6: #363636;
 }

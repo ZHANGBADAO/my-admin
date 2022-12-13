@@ -14,7 +14,8 @@
             <div class="card-header flex justify-between">
               <div class="flex">
                 <Icon icon="carbon:user-avatar" width="24" />&nbsp;&nbsp;<span
-                  class="text-[#333] font-medium"
+                  class="font-medium"
+                  style="color: var(--gray-color-6)"
                   >{{ role.roleName }}</span
                 >
               </div>
@@ -38,11 +39,13 @@
           </template>
           <div class="text-center">
             <el-tooltip :content="role.ext" placement="bottom" effect="light">
-              <p class="text-2 text-[14px] text-[#666]">
+              <p class="text-2 text-[14px]" style="color: var(--gray-color-5)">
                 {{ role.ext }}
               </p>
             </el-tooltip>
-            <p class="text-[14px] text-[#999] mt-[8px] mb-[40px]">
+            <p
+              class="text-[14px] mt-[8px] mb-[40px]"
+              style="color: var(--gray-color-4)">
               {{
                 !!role.userCount
                   ? `该角色已关联 ${role.userCount} 个账号`
@@ -57,7 +60,8 @@
             <div class="card-header">
               <div class="flex">
                 <Icon icon="carbon:user-avatar" width="24" />&nbsp;&nbsp;<span
-                  class="text-[#333] font-medium"
+                  class="font-medium"
+                  style="color: var(--gray-color-6)"
                   >自定义角色</span
                 >
               </div>
@@ -67,7 +71,9 @@
             <div class="flex justify-center">
               <Icon icon="carbon:add" color="#666" width="48" />
             </div>
-            <p class="text-2 text-[14px] text-[#666] mb-[40px]">
+            <p
+              class="text-2 text-[14px] mb-[40px]"
+              style="color: var(--gray-color-5)">
               新增自定义角色，灵活管理平台权限
             </p>
             <el-button type="primary" plain @click="handleAdd"
