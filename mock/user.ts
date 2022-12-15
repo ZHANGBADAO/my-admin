@@ -14,9 +14,10 @@ export default [
           id: '1524641113795862528',
           tenantId: '1524641113795862528',
           userCode: null,
-          userName: '上山纳凉',
+          userName: 'admin',
           userPhone: '18092164251',
-          avatar: 'https://dhzl-test.oss-cn-beijing.aliyuncs.com/image.jpg',
+          avatar:
+            'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
           password: '',
           ext: null,
           deleteFlag: 1,
